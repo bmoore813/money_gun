@@ -11,8 +11,7 @@ import pandas as pd
 
 from app.utility.decorators import type_check
 from app.enumerations import StocksFolder
-
-
+from app.constants import BLACK_LISTED_STOCK_NAMES
 
 
 @type_check(list)
@@ -61,8 +60,3 @@ def remove_stop_words(tokenized: List[str]) -> List[str]:
     adjusted_corpus: List[str] = [word for word in tokenized if word not in stop_words]
     # print(adjusted_corpus)
     return adjusted_corpus
-
-
-
-BLACK_LISTED_STOCK_NAMES: List[str] = black_listed_stock_names()
-STOCK_SYMBOLS: Set = get_stock_symbols()

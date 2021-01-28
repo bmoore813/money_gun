@@ -17,4 +17,5 @@ if __name__ == "__main__":
         df["Exchange"] = name
         data.append(df)
     master: pd.DataFrame = pd.concat(data)
-    df.to_csv(StocksFolder.master_path.value, index=False)
+    master['Symbol'] = master['Symbol'].apply(lambda x: x.strip().upper())
+    master.to_csv(StocksFolder.master_path.value, index=False)

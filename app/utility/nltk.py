@@ -11,7 +11,7 @@ import pandas as pd
 
 from app.utility.decorators import type_check
 from app.enumerations import StocksFolder
-from app.constants import STOCK_SYMBOLS, BLACK_LISTED_STOCK_NAMES
+
 
 
 
@@ -36,7 +36,7 @@ def black_listed_stock_names() -> List[str]:
     black_list: List[str] = []
     nltk_download_corpus(["words"])
     english_words: List[str] = [w.upper() for w in words.words()]
-    for i in STOCK_SYMBOLS:
+    for i in get_stock_symbols():
         if i in english_words:
             if len(i) != 1:
                 black_list.append(i)
@@ -63,3 +63,6 @@ def remove_stop_words(tokenized: List[str]) -> List[str]:
     return adjusted_corpus
 
 
+
+BLACK_LISTED_STOCK_NAMES: List[str] = black_listed_stock_names()
+STOCK_SYMBOLS: Set = get_stock_symbols()

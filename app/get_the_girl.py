@@ -2,17 +2,21 @@
 
 """
 from typing import List, Set, Dict
+from collections import Counter
 import datetime as dttm
 
 from app.utility.decorators import type_check
 from app.engines.reddit import connect_to_reddit
-from app.constants import SUB_REDDIT, STOCK_SYMBOLS
+from app.constants import SUB_REDDIT
 from app.utility.nltk import (
     black_listed_stock_names,
+    get_stock_symbols,
     toke_it,
     remove_stop_words,
 )
 
+BLACK_LISTED_STOCK_NAMES: List[str] = black_listed_stock_names()
+STOCK_SYMBOLS: Set = get_stock_symbols()
 
 
 @type_check(float)
